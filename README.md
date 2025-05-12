@@ -104,19 +104,19 @@ We evaluate model behavior under five levels of skewness:
 
 Each notebook includes:
 
-- Posterior traceplots and density plots
+- Posterior traceplots 
 - Inference results for $\alpha, \beta, \sigma_v, \sigma_u, \lambda$
 - RMSE comparisons for Skew-Normal vs Normal
-- Posterior distribution of technical efficiency (TE)
+- Posterior summaries of all parameters
 - MCMC convergence diagnostics
 
 ---
 
-## 📈 Technical Efficiency (TE) Results
+## 📈 Trace plot results
 
-Posterior distributions of TE scores across different skewness levels (λ):
+Trace plot of parameter posteriors across different skewness levels (λ):
 
-| λ       | Posterior TE Boxplot |
+| λ       | Posterior Traceplot |
 |---------|----------------------|
 | −0.5    | ![](Figures/tp0.5_resized.png) |
 | −1.0    | ![](Figures/tp1_resized.png)   |
