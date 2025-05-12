@@ -41,10 +41,17 @@ We use log-transformed Cobb-Douglas specifications and evaluate the posterior of
 
 ```
 .
-├── data/                   # Simulated and real datasets
-├── notebooks/              # Per-lambda simulation runs (0.5 to 5)
-├── figures/                # Posterior TE plots (uploaded separately)
-├── src/                    # Model code and utilities (PyMC)
+├── Notebooks/              # Per-lambda simulation runs (0.5 to 5)
+├── Figures/                # Posterior TE plots (uploaded separately)
+├── Output/                # All result outputs from the experiments, including:
+│   ├── 1.posterior summaries     # Posterior parameter summaries (mean, sd, etc.)
+│   ├── 2.traceplots              # Traceplots and posterior distributions
+│   ├── 3.loo                     # Leave-One-Out cross-validation results
+│   ├── 4.rmse_param              # RMSE for estimated model parameters
+│   ├── 5.y_pred_rmse            # RMSE for predicted y values
+│   ├── 6.inefficiency_rmse      # RMSE for inefficiency term (u)
+├── Docs/                  # Project report (PDF) summarizing the Bayesian stochastic frontier modeling approach, results, and key findings
+├── LICENSE                    # MIT License
 ├── requirements.txt        # Python environment
 └── README.md               # This file
 ```
