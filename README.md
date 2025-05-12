@@ -89,6 +89,11 @@ These plots demonstrate how skewness affects the TE posterior. As λ becomes mor
 
 ---
 
+### 📊 RMSE Table for Inefficiency Term (u)
+
+![RMSE Inefficiency](figures/rmse_inefficiency.png)
+
+
 ## ✅ Key Findings
 
 - The Bayesian SN-HN model yields significantly lower RMSE values for all parameters compared to MLE (including λ and inefficiency term \( u \)).
