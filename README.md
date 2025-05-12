@@ -11,29 +11,61 @@ This repository provides an implementation of Bayesian stochastic frontier model
 
 ## 📌 Overview
 
-This project presents:
+Our contributions are threefold:
 
-- Bayesian estimation for SN-HN stochastic frontier models using PyMC.
-- Full derivation and implementation of Gibbs + Metropolis-Hastings sampling.
-- Simulation-based evaluation under varying skewness levels (λ).
-- Technical efficiency (TE) estimation with uncertainty quantification.
-- Comparison with frequentist MLE methods (Nelder-Mead and ECM).
-- Real data analysis using the 1994 NBER manufacturing dataset.
+- replicate the SN-HN stochastic frontier model in PyMC, providing an accessible and transparent implementation for Python users
+- apply the model to simulated production data generated from a SN-HN distribution and evaluate the model’s performance using posterior analysis
+- compare the performance of proposed by (Wei et al., 2025) which employs a skew-normal likelihood with that of a conventional model based on a normal likelihood to assess the impact of distributional asymmetry on posterior
+inference.
 
----
+
 
 ## 🧠 Model Structure
 
 The stochastic frontier model is specified as:
 
 $$
-Y_i = \beta_0 + \beta_1 x_{i1} + \dots + \beta_k x_{ik} + V_i - U_i
+Y_i = \alpha + \beta X + V - U
 $$
 
--  $V_i \sim \text{SkewNormal}(0, \sigma_v^2, \lambda$) 
-- $U_i \sim \text{HalfNormal}(0, \sigma_u^2$)
+- $Y$ represents the logarithm of the output variable
+- $X$ denotes the logarithm of a single explanatory variable
+- $\alpha$ is the intercept, $β$ is the regression coefficient
+- $U$ represents the inefficiency error term
+- $V$ is the measurement error term
+- $\xi$ is the location parameter
 
-We use log-transformed Cobb-Douglas specifications and evaluate the posterior of parameters and inefficiency terms via MCMC.
+$$
+X \sim N(1,1)\\
+U \sim HN(0,\sigma_u^2)\\
+Y \sim SN(\xi,\sigma_v^2,\lambda)\\
+\xi = \alpha + \beta X - U
+$$
+
+The true parameter values used in simulation are:
+$\alpha= 5, β = 2, σ_u = 1, σ_v = 1.5$
+
+
+### Prior Distributions
+For the Bayesian analysis, we adopt the following prior distributions:
+
+$$
+\alpha \sim N(\mu_\alpha, \sigma_\alpha^2)\\
+\beta \sim N(\mu_\beta, \sigma_\beta^2)\\
+\sigma_v^2 \sim IG(\alpha_v,\beta_v)\\
+\sigma_u^2 \sim IG(\alpha_u,\beta_u)\\
+\lambda = \sim TN(\mu_\lambda,\sigma_\lambda^2;a,b)\\
+$$
+
+
+To assess the robustness of posterior inference for λ, we simulate data across the following
+scenarios:
+- Skewness values: λ∈{−0.5,−1,−1.5,−2,−5}
+- Sample sizes: n∈{50,100,200,500}
+
+This results in a total of 20 simulation scenarios. For each scenario, nsynthetic observations
+are generated and used as input for Bayesian inference.
+
 
 ---
 
@@ -73,7 +105,7 @@ We evaluate model behavior under five levels of skewness:
 Each notebook includes:
 
 - Posterior traceplots and density plots
-- Inference results for α, β, σ_v, σ_u, λ
+- Inference results for $\alpha, \beta, \sigma_v, \sigma_u, \lambda$
 - RMSE comparisons for Skew-Normal vs Normal
 - Posterior distribution of technical efficiency (TE)
 - MCMC convergence diagnostics
@@ -103,11 +135,9 @@ These plots demonstrate how skewness affects the TE posterior. As λ becomes mor
 
 ## ✅ Key Findings
 
-- The Bayesian SN-HN model yields significantly lower RMSE values for all parameters compared to MLE (including λ and inefficiency term \( u \)).
-- TE distributions under SN-HN models are more realistic and robust under skewed error settings.
-- Posterior sampling shows well-mixed traces for all parameters, with clear differences in posterior shapes between models.
-- SN-HN models outperform Normal-based SFM in terms of DIC (Deviance Information Criterion).
-
+- Wei et al’s Bayesian linear model with a skew-normal half-normal likelihood performs comparably to the standard normal model across LOO and RMSE metrics.
+- For λ far from zero (e.g., −1.5, −2, −5), the Wei et al. model predicts parameter values and inefficiency more accurately using the posterior mean prediction.
+- This is shown by lower RMSE in posterior mean inefficiency and parameter estimates compared to the model using the normal likelihood.
 ---
 
 ## 💻 Setup
@@ -152,3 +182,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 For academic questions:  
 📧 [zheng.wei@tamucc.edu](mailto:zheng.wei@tamucc.edu)
+📧 [zzapata2@tamucc.edu](mailto:zzapata2@tamucc.edu)
+📧 [cliu7@tamucc.edu](mailto:cliu@tamucc.edu)
+📧 [yhwang@tamucc.edu](mailto:yhwang@tamucc.edu)
+
