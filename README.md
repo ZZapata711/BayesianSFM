@@ -91,7 +91,7 @@ These plots demonstrate how skewness affects the TE posterior. As λ becomes mor
 
 ### 📊 RMSE Table for Inefficiency Term (u)
 
-![RMSE Inefficiency](figures/rmse_inefficiency.png)
+![RMSE Inefficiency](Figures/rmse_inefficiency.png)
 
 
 ## ✅ Key Findings
