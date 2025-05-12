@@ -30,8 +30,8 @@ $$
 Y_i = \beta_0 + \beta_1 x_{i1} + \dots + \beta_k x_{ik} + V_i - U_i
 $$
 
-- \( V_i \sim \text{SkewNormal}(0, \sigma_v^2, \lambda) \)
-- \( U_i \sim \text{HalfNormal}(0, \sigma_u^2) \)
+-  $V_i \sim \text{SkewNormal}(0, \sigma_v^2, \lambda$) 
+- $U_i \sim \text{HalfNormal}(0, \sigma_u^2$)
 
 We use log-transformed Cobb-Douglas specifications and evaluate the posterior of parameters and inefficiency terms via MCMC.
 
@@ -79,11 +79,11 @@ Posterior distributions of TE scores across different skewness levels (λ):
 
 | λ       | Posterior TE Boxplot |
 |---------|----------------------|
-| −0.5    | ![](figures/tp0.5_resized.png) |
-| −1.0    | ![](figures/tp1_resized.png)   |
-| −1.5    | ![](figures/tp1.5_resized.png) |
-| −2.0    | ![](figures/tp2_resized.png)   |
-| −5.0    | ![](figures/tp5_resized.png)   |
+| −0.5    | ![](Figures/tp0.5_resized.png) |
+| −1.0    | ![](Figures/tp1_resized.png)   |
+| −1.5    | ![](Figures/tp1.5_resized.png) |
+| −2.0    | ![](Figures/tp2_resized.png)   |
+| −5.0    | ![](Figures/tp5_resized.png)   |
 
 These plots demonstrate how skewness affects the TE posterior. As λ becomes more negative, the posterior spreads wider—highlighting increased uncertainty and the importance of using a skew-normal likelihood.
 
